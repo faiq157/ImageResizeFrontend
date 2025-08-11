@@ -37,8 +37,9 @@ export default function ImageUploader() {
       });
 
       setMessage(" File uploaded successfully!");
-      const resizedPath = `uploads/resized/${file.name}`;
+      const resizedPath = `uploads/resized/${encodeURIComponent(file.name)}`;
       const resizedUrlGuess = `https://image-resizer-uploads.s3.ap-southeast-2.amazonaws.com/${resizedPath}`;
+
       setResizedUrl(resizedUrlGuess);
 
     } catch (err) {
@@ -49,8 +50,10 @@ export default function ImageUploader() {
     }
   };
 
+  console.log("image URL",resizedUrl)
+
   return (
-    <div className="p-6 max-w-lg mx-auto bg-white dark:bg-gray-900 shadow-lg rounded-2xl border border-gray-200">
+    <div className="p-6 max-w-lg mx-auto bg-white dark:bg-gray-900 shadow-lg ">
       <h2 className="text-xl font-semibold mb-4 text-center text-gray-800 dark:text-gray-200">
         Image Uploader
       </h2>

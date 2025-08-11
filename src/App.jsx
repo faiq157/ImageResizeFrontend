@@ -9,7 +9,7 @@ Amplify.configure(outputs);
 
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 to-blue-400 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br  p-4">
       <Authenticator className="max-w-md w-full">
         {({ signOut, user }) => (
           <main className="bg-gray-900 rounded-xl shadow-xl p-8 flex flex-col gap-6 text-white">
@@ -19,7 +19,7 @@ function App() {
               <p>Feel free to upload and resize your images.</p>
             </header>
 
-            <section>
+            <section className='w-[80vw]'>
               <ImageUploader />
             </section>
 
