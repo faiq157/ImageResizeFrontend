@@ -1,34 +1,40 @@
 import './App.css'
 import ImageUploader from './components/ImageUploader'
+import { Authenticator } from '@aws-amplify/ui-react';
+import { Amplify } from 'aws-amplify';
+import outputs from "../amplify_outputs.json"
+import '@aws-amplify/ui-react/styles.css';
+
+Amplify.configure(outputs);
 
 function App() {
-
   return (
-   <>
-    <div className="min-h-screen w-[100vw] bg-gradient-to-br  flex items-center justify-center p-4">
-    <main className=" bg-gray-900 rounded-xl shadow-xl max-w-3xl w-full p-8 flex flex-col gap-6">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 to-blue-400 p-4">
+      <Authenticator className="max-w-md w-full">
+        {({ signOut, user }) => (
+          <main className="bg-gray-900 rounded-xl shadow-xl p-8 flex flex-col gap-6 text-white">
             <header className="text-center">
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-                Welcome to the Image Resizer App
-              </h1>
-              <p className="text-gray-600 dark:text-gray-300 mb-1">
-                This app allows you to resize images easily.
-              </p>
-              <p className="text-gray-600 dark:text-gray-300">
-                Feel free to upload and resize your images.
-              </p>
+              <h1 className="text-3xl font-bold mb-2">Welcome to the Image Resizer App</h1>
+              <p className="mb-1">This app allows you to resize images easily.</p>
+              <p>Feel free to upload and resize your images.</p>
             </header>
 
             <section>
               <ImageUploader />
             </section>
 
-            
-             
+            <button onClick={signOut} className="mt-4 px-4 py-2 bg-indigo-700 rounded hover:bg-indigo-800">
+              Sign out
+            </button>
           </main>
+        )}
+      </Authenticator>
     </div>
-   </>
-  )
+  );
 }
 
+
 export default App
+
+
+
